@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+# CentOS 7 64 bit
+config.vm.define "centos" do |centos|
+  centos.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+  end
+  centos.vm.box = "vStone/centos-7.x-puppet.3.x" 
+  centos.vm.network "forwarded_port", guest: 80, host: 88
+  centos.vm.network "private_network", ip: "192.168.80.90"
+  centos.ssh.forward_agent = true
+end
+
+end
