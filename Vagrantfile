@@ -94,4 +94,26 @@ config.vm.define "wheezy" do |wheezy|
   wheezy.ssh.forward_agent = true
 end
 
+
+config.vm.define "jessie64" do |jessie64|
+  jessie64.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+  end
+  jessie64.vm.box = "debian/jessie64"
+  jessie64.ssh.forward_agent = true
+end
+
+## Debian 8.1 64 bit
+config.vm.define "jessie81" do |jessie81|
+
+  jessie81.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+  end
+
+  jessie81.vm.box = "w0ng/debian-8.1.0-amd64"
+  jessie81.vm.network "forwarded_port", guest: 80, host: 81
+  jessie81.vm.network "private_network", ip: "192.168.33.20"
+  jessie81.ssh.forward_agent = true
+end
+
 end
